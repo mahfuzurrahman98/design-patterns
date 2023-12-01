@@ -11,21 +11,21 @@ public class KnifeStore {
   Class knifeFactoryClass;
 
   public KnifeStore() {
+    System.out.println("Here in KnifeStore");
     String extendingClassName = this.getClass().getSimpleName();
-    // System.out.println("Extending class: " + extendingClassName);
 
-    switch (extendingClassName) {
-      case "BudgetKnifeStore":
-        knifeFactoryClass = BudgetKnifeFactory.class;
-        break;
-      default:
-        knifeFactoryClass = RegularKnifeFactory.class;
+    if ("BudgetKnifeStore".equals(extendingClassName)) {
+      knifeFactoryClass = BudgetKnifeFactory.class;
+    } else if ("RegularKnifeStore".equals(extendingClassName)) {
+      knifeFactoryClass = RegularKnifeFactory.class;
+    } else {
+      knifeFactoryClass = null;
+      throw new IllegalArgumentException("Invalid class name: " + extendingClassName);
     }
   }
 
   // Overloaded method to allow specifying a custom factory (for regular knives)
   public Knife orderKnife(String knifeType) {
-
     // get the knife factory based on the price, it could be Regular, Budget,
     // Special, or Premium
     // we will then pass the type to that factory to create the knife

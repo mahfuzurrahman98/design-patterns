@@ -7,6 +7,7 @@ import factory_advance.knifes.BudgetSteakKnife;
 public class BudgetKnifeFactory implements KnifeFactory {
   @Override
   public Knife createKnife(String knifeType) {
+    System.out.println("Creating a budget knife of type: " + knifeType);
     switch (knifeType.toLowerCase()) {
       case "steak":
         return new BudgetSteakKnife();

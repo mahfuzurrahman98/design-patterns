@@ -30,11 +30,12 @@ public class App {
         // 2) Factory method
         // ---------------------------------
         try {
+            String type = "steak";
             KnifeStore knifeStore = new RegularKnifeStore();
             // Client code ordering a steak knife
-            Knife knife = knifeStore.orderKnife("chef");
+            Knife knife = knifeStore.orderKnife(type);
             // Do something with the ordered knife, e.g., print a message
-            System.out.println("Ordered a steak knife: [" + knife + "]");
+            System.out.println("Ordered a reguar " + type + " knife: [" + knife + "]");
         } catch (Exception e) {
             e.printStackTrace();
         }
