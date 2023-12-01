@@ -14,13 +14,12 @@ public class App {
         // System.out.println(s2);
         // -----------------------------------|
 
+
         // Factory design pattern example
         // ---------------------------------
         KnifeStore knifeStore = new KnifeStore();
-
         // Client code ordering a steak knife
         Knife knife = knifeStore.orderKnife("steak");
-
         // Do something with the ordered knife, e.g., print a message
         System.out.println("Ordered a steak knife: [" + knife + "]");
     }

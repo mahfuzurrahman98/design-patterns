@@ -1,6 +1,5 @@
 package factory;
 
-
 // Concrete product classes
 class SteakKnife implements Knife {
     @Override
@@ -36,32 +35,23 @@ class ChefsKnife implements Knife {
     }
 }
 
-
 // Creator interface (Factory)
-interface KnifeFactory {
-    Knife createKnife();
-}
-
-
-// Concrete creator classes
-class SteakKnifeFactory implements KnifeFactory {
-    @Override
-    public Knife createKnife() {
-        return new SteakKnife();
+class KnifeFactory {
+    public Knife createKnife(String knifeType) {
+        String className = knifeType.substring(0, 1).toUpperCase() + knifeType.substring(1) + "Knife";
+        try {
+            Class<?> clazz = Class.forName("factory." + className);
+            return (Knife) clazz.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid knife type: " + knifeType);
+        }
     }
 }
-
-class ChefsKnifeFactory implements KnifeFactory {
-    @Override
-    public Knife createKnife() {
-        return new ChefsKnife();
-    }
-}
-
 
 public class KnifeStore {
     public Knife orderKnife(String knifeType) {
-        Knife knife = createKnife(knifeType);
+        KnifeFactory knifeFactory = new KnifeFactory();
+        Knife knife = knifeFactory.createKnife(knifeType);
 
         // Common operations for all knives
         knife.sharpen();
@@ -69,17 +59,5 @@ public class KnifeStore {
         knife.pack();
 
         return knife;
-    }
-
-    private Knife createKnife(String knifeType) {
-        switch (knifeType.toLowerCase()) {
-            case "steak":
-                return new SteakKnife();
-            case "chef":
-                return new ChefsKnife();
-            // Add more cases for additional knife types as needed
-            default:
-                throw new IllegalArgumentException("Invalid knife type: " + knifeType);
-        }
     }
 }
