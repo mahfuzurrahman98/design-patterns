@@ -1,11 +1,11 @@
 
 // import singleton.Singleton;
-import factory.Knife;
-import factory_advance.stores.KnifeStore;
-import factory_advance.stores.RegularKnifeStore;
 
 // import factory.KnifeStore;
 // 
+
+import adaptar.coffe_machine.Client;
+
 public class App {
     public static void main(String[] args) throws Exception {
         // Singleton design pattern example
@@ -29,15 +29,23 @@ public class App {
 
         // 2) Factory method
         // ---------------------------------
-        try {
-            String type = "steak";
-            KnifeStore knifeStore = new RegularKnifeStore();
-            // Client code ordering a steak knife
-            Knife knife = knifeStore.orderKnife(type);
-            // Do something with the ordered knife, e.g., print a message
-            System.out.println("Ordered a reguar " + type + " knife: [" + knife + "]");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // try {
+        // String type = "steak";
+        // KnifeStore knifeStore = new RegularKnifeStore();
+        // // Client code ordering a steak knife
+        // Knife knife = knifeStore.orderKnife(type);
+        // // Do something with the ordered knife, e.g., print a message
+        // System.out.println("Ordered a reguar " + type + " knife: [" + knife + "]");
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+
+        // 3) Facade pattern
+        // ---------------------------------
+        // Customer.run();
+
+        // 4) Adaptar pattern
+        // ---------------------------------
+        Client.run();
     }
 }
